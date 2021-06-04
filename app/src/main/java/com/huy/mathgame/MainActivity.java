@@ -29,6 +29,15 @@ public class MainActivity extends AppCompatActivity {
         Number2.setText(""+value2);
     }
 
+    public void updateOperation() {
+        TextView sign = findViewById(R.id.math_sign);
+        int operation = r.nextInt(1) ;
+        if (operation == 0)
+            sign.setText("+");
+        else if (operation == 1)
+            sign.setText("*");
+    }
+
     public void onSubmitClick (View view){
         TextView Answer = findViewById(R.id.Answer);
         EditText Attempt = findViewById(R.id.Attempt);
@@ -46,6 +55,29 @@ public class MainActivity extends AppCompatActivity {
         }
 
         updateValues();
+    }
+
+    public void doOperation(int userAnswer){
+        TextView Answer = findViewById(R.id.Answer);
+        TextView sign = findViewById(R.id.math_sign);
+
+        if(sign.toString() == "+"){
+            if(userAnswer == value1 + value2){
+                Answer.setText("Correct!");
+            }
+            else{
+                Answer.setText("Wrong. The answer is: " + (value1 + value2));
+            }
+        }
+        else if (sign.toString() == "*") {
+            if(userAnswer == value1*value2) {
+                Answer.setText("Correct!");
+
+            } else {
+                Answer.setText("Wrong, the correct answer was: " + (value1*value2));
+            }
+        }
+
     }
 
     public void updateValues() {
